@@ -201,7 +201,8 @@ python cargo_common_do_patch_paths() {
     with open(lockfile, "w") as f:
         f.writelines(newlines)
 }
-do_configure[postfuncs] += "cargo_common_do_patch_paths"
+# HACK: Disable patch_paths until handling of virtual manifests in git dependencies is fixed
+#do_configure[postfuncs] += "cargo_common_do_patch_paths"
 
 do_compile:prepend () {
         oe_cargo_fix_env
